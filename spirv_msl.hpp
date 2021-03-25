@@ -517,6 +517,13 @@ public:
 	// calling ::compile() if the location was used by the MSL code.
 	void add_msl_shader_input(const MSLShaderInput &input);
 
+	// If a shader output is active in this stage, but inactive in a subsequent stage,
+	// this can be signalled here.
+	// An output which matches one of these will not be emitted in IO blocks, but rather treated as a private
+	// variable.
+	void mask_msl_shader_output(uint32_t location, uint32_t component);
+	void mask_msl_shader_output(spv::BuiltIn builtin);
+
 	// resource is a resource binding to indicate the MSL buffer,
 	// texture or sampler index to use for a particular SPIR-V description set
 	// and binding. If resource bindings are provided,
